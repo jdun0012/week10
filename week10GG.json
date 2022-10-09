@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jdun0012/Week9Homework/main/Australian%20Presence%20Data.csv"
+  },
+  "vconcat": [
+    {
+      "layer": [
+        {
+          "mark": {"type": "square", "tooltip": true},
+          "params": [
+            {
+              "name": "bird_Selector",
+              "select": {"type": "point", "fields": ["Species Name"]},
+              "bind": {
+                "input": "select",
+                "options": [
+                  null,
+                  "Common Sandpiper",
+                  "Channel-billed Cuckoo",
+                  "Bar-tailed Godwit"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {"text": {"field": "Month", "type": "quantitative"}}
+        }
+      ],
+      "width": 500,
+      "height": 400,
+      "mark": "square",
+      "title": "Bird Frequency Monthly in Australia",
+      "encoding": {
+        "x": {
+          "field": "Month",
+          "type": "nominal",
+          "sort": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        },
+        "y": {"field": "Frequency", "type": "ordinal", "sort": ["3", "2", "1"]},
+        "color": {
+          "condition": {"param": "bird_Selector", "field": "Species Name"},
+          "value": "grey"
+        }
+      }
+    },
+    {
+      "layer": [
+        {
+          "mark": {"type": "square", "tooltip": true},
+          "params": [
+            {
+              "name": "bird_Selector Flipped",
+              "select": {"type": "point", "fields": ["Species Name"]},
+              "bind": {
+                "input": "select",
+                "options": [
+                  null,
+                  "Common Sandpiper",
+                  "Channel-billed Cuckoo",
+                  "Bar-tailed Godwit"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {"text": {"field": "Month", "type": "quantitative"}}
+        }
+      ],
+      "width": 500,
+      "height": 400,
+      "mark": "square",
+      "title": "Bird Frequency Monthly in Australia (Flipped)",
+      "encoding": {
+        "x": {"field": "Frequency", "type": "ordinal", "sort": ["3", "2", "1"]},
+        "y": {
+          "field": "Month",
+          "type": "nominal",
+          "sort": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        },
+        "color": {
+          "condition": {
+            "param": "bird_Selector Flipped",
+            "field": "Species Name"
+          },
+          "value": "grey"
+        }
+      }
+    }
+  ],
+  "config": {}
+}
